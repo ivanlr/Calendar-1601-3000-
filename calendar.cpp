@@ -5,7 +5,7 @@
 * EMAIL: #ivanlrojales@gmail.com#
 *************************************/
 #include <stdio.h>
-
+//Devuelve 1 si el año i es bisiesto y 0 si no lo es.
 int anyo_bisiesto(int i)
 {
 	if (i % 4 == 0 && (i % 100 != 0 || i % 400 == 0))
@@ -18,13 +18,13 @@ int anyo_bisiesto(int i)
 
 
 /**
- * Esta funci�n devuelve qu� d�a fue el 1 de enero del a�o anyo.
+ * Esta función devuelve qué día fue el 1 de enero del año anyo.
  * Para lunes devuelve 0.
  * Para martes devuelve 1.
- * Para mi�rcoles devuelve 2.
+ * Para miércoles devuelve 2.
  * Para jueves devuelve 3.
  * Para viernes devuelve 4.
- * Para s�bado devuelve 5.
+ * Para sábado devuelve 5.
  * Para domingo devuelve 6.
  */
 
@@ -47,6 +47,7 @@ int uno_enero_anyo(int anyo)
 	return (dias % 7);
 }
 
+// Devuelve el numero de dias que tienes el mes <mes> del año <anyo> siendo(0-ENERO-....11-DICIEMBRE-).
 int dias_que_tiene_mes(int mes, int anyo)
 {
 	switch(mes)
@@ -77,9 +78,9 @@ int dias_que_tiene_mes(int mes, int anyo)
 }
 
 /*
- * Devuelve el dia (de 0 -lunes- a 6 -domingo-) en que comienza el mes mes en
- * el anyo anyo, sabiendo que el dia 1 de enero del anyo anyo fue comienzo.Y teniendo en cuenta que si un mes
- * empieza en el dia_mes 2 -miercoles-, si hacemos la operacion (dia_mes + dias_del_mes)%7 te da el dia en que
+ * Devuelve el día (de 0 -lunes- a 6 -domingo-) en que comienza el mes mes en
+ * el anyo anyo, sabiendo que el día 1 de enero del anyo anyo fue comienzo.Y teniendo en cuenta que si un mes
+ * empieza en el dia_mes 2 -miercoles-, si hacemos la operación (dia_mes + dias_del_mes)%7 te da el día en que
  * comienza el mes siguiente.
  */
 int dia_comienzo_mes(int comienzo, int mes, int anyo)
@@ -95,6 +96,7 @@ int dia_comienzo_mes(int comienzo, int mes, int anyo)
 
 	return dia_mes;
 }
+// Escribe el nombre del mes, dejando un nuúmero de espacios fijo para, más tarde escribir el año.
 void escribir_mes(int mes)
 {
   switch(mes)
@@ -116,17 +118,17 @@ void escribir_mes(int mes)
 //Pinta el calendario.
 void pintar_calendario(int anyo, int mes, int dia_comienzo, int dias_del_mes)
 {
-  //Como hay que dejar un espacio a la izquierda en cada linea, lo dejamos en esta parte que ser� fija.
+  //Como hay que dejar un espacio a la izquierda en cada linea, lo dejamos en esta parte que será fija.
   printf("");escribir_mes(mes);printf("%d\n",anyo);
   printf("===========================\n");
   printf("LU  MA  MI  JU  VI | SA  DO\n");
   printf("===========================\n");
   printf(" ");
 
-  //Pintamos los puntos hasta llegar al dia de comienzo del mes.
+  //Pintamos los puntos hasta llegar al día de comienzo del mes.
   for(int k = 0; k < dia_comienzo; k++)
   {
-    // Si el dia en cuestion, es el cuarto, pintamos la |.
+    // Si el día en cuestión, es el cuarto, pintamos la |.
     if(k==4)
     {
       printf(". |  ");
@@ -136,10 +138,10 @@ void pintar_calendario(int anyo, int mes, int dia_comienzo, int dias_del_mes)
 
   for(int i = 0; i< dias_del_mes; i++)
   {
-    //Si el numero del dia a pintar, i+1,  es menor que nueve dejamos un espacio en blanco m�s que si no lo fuera.
+    //Si el número del dia a pintar, i+1,  es menor que nueve dejamos un espacio en blanco más que si no lo fuera.
     if(i+1<9)
     {
-      //Si el numero de dia a pintar mas el dia de comienzo es igual a 4, o el mismo dia de la siguiente semana, 4+7, 4+7+7, 4+7+7+7, 4+7+7+7+7,
+      //Si el número de dia a pintar mas el día de comienzo es igual a 4, o el mismo día de la siguiente semana, 4+7, 4+7+7, 4+7+7+7, 4+7+7+7+7,
       // entonces pintamos la |.
       if((i+dia_comienzo)==4 || (i+dia_comienzo)==11 || (i+dia_comienzo)==18 || (i+dia_comienzo)==25 || (i+dia_comienzo)==32)
       {
@@ -152,7 +154,7 @@ void pintar_calendario(int anyo, int mes, int dia_comienzo, int dias_del_mes)
         printf("\n ");
       }
     }
-    ////Si el numero del dia a pintar, i+1,  es mayor o igual que nueve dejamos un espacio en blanco menos que si no lo fuera.
+    ////Si el número del dia a pintar, i+1,  es mayor o igual que nueve dejamos un espacio en blanco menos que si no lo fuera.
     else
     {
       if((i+dia_comienzo)==4 || (i+dia_comienzo)==11 || (i+dia_comienzo)==18 || (i+dia_comienzo)==25 || (i+dia_comienzo)==32)
@@ -167,7 +169,7 @@ void pintar_calendario(int anyo, int mes, int dia_comienzo, int dias_del_mes)
     }
   }
   //Pintamos los puntos en los dias que sobren para acabar el mes.
-  //Si el mes ocupa 5 semanas. Y ademas vemos que el mes no sea febrero y comience por lunes, porque ocupar�a 4 semanas.
+  //Si el mes ocupa 5 semanas. Y ademas vemos que el mes no sea febrero y comience por lunes, porque ocuparía 4 semanas.
   if(dia_comienzo+dias_del_mes<=35 && (dia_comienzo!=0 || dias_del_mes!=28)){
     for(int j = 0; j < (35-dia_comienzo - dias_del_mes); j++)
     {
@@ -202,14 +204,14 @@ int main()
   int mes;
   int dia;
 
-  printf ("�Mes (1..12)?");
+  printf ("¿Mes (1..12)?");
   scanf ("%d", &mes);
   if(mes<1 || mes>12)
   {
     return -1;
   }
   mes--;
-  printf ("�A�o (1601..3000)?");
+  printf ("¿Año (1601..3000)?");
   scanf ("%d", &anyo);
   if(anyo<1601 || anyo>3000)
   {
